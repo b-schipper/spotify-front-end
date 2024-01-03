@@ -1,6 +1,6 @@
 "use client";
 import NavigationSidebar from "@/components/NavigationSidebar";
-import GlobalChatSidebar from "@/components/GlobalChatSidebar";
+import GlobalChatSidebar from "@/components/GlobalChat";
 import { ReactNode } from "react";
 
 const layout = ({ children }: { children: ReactNode }) => {

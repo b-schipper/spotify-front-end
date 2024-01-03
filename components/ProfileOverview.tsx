@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import ProfileItem from "@/components/ProfileItem";
-import { getUserProfile } from "@/services/profile-service";
+import { getUserProfile } from "@/services/user-service";
 import { axiosInstance } from "@/services/axios-service";
 import { Profile } from "@/types/types";
+import { Separator } from "@radix-ui/react-separator";
 
 const ProfileOverview = () => {
   const [profile, setProfile] = useState<Profile>();
@@ -26,6 +27,7 @@ const ProfileOverview = () => {
     <div>
       <h1 className="mt-8 text-sm text-black">Your Profile</h1>
       { profile != undefined && <ProfileItem profile={profile}/> }
+      <Separator className="my-10 bg-transparent" />
     </div>
   );
 }
