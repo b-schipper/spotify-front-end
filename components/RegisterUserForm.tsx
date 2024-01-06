@@ -54,26 +54,34 @@ const RegisterUserForm = () => {
   };
 
   return(
-    <form className="flex flex-col"
-          onSubmit={handleSubmit(onSubmit)}>
+    <form 
+      data-testid="register-user-form"
+      className="flex flex-col"
+      onSubmit={handleSubmit(onSubmit)}>
       <h1>Register</h1>
       <Separator className="my-2 bg-transparent" />
       <label>Username</label>
       <input 
         type="text" 
+        data-testid="username-input"
         {...register("username")}
       />
       <label>Email</label>
       <input 
         type="text" 
+        data-testid="email-input"
         {...register("email")}
       />
       <label>Password</label>
       <input 
-        type="password" 
+        type="password"
+        data-testid="password-input"
         {...register("password")}
       />
-      <button type="submit">
+      <button 
+        type="submit"
+        data-testid="register-user-button"
+      >
         Register
       </button>
       <Separator className="my-4 bg-transparent" />

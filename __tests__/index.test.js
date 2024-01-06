@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, act } from '@testing-library/react'
 import LoginForm from "../components/LoginForm";
+import RegisterUserForm from "../components/RegisterUserForm";
 import { AuthProvider, useAuth as mockUseAuth } from "../components/AuthProvider";
 import '@testing-library/jest-dom/jest-globals';
 
@@ -16,45 +17,48 @@ jest.mock('../components/AuthProvider', () => ({
   useAuth: jest.fn(),
 }));
 
-describe('LoginForm', () => {
-  it('renders a login form', () => {
+describe('RegisterUserForm', () => {
+  it('Renders the user registration form', () => {
       mockUseAuth.mockReturnValue({
       });
 
       render(
           <AuthProvider>
-              <LoginForm />
+              <RegisterUserForm />
           </AuthProvider>
       );
 
 
-      expect(screen.getByTestId('login-button')).toHaveTextContent('Log in');
+      expect(screen.getByTestId("register-user-form")).toBeInTheDocument();
       expect(screen.getByTestId("username-input")).toBeInTheDocument();
+      expect(screen.getByTestId("email-input")).toBeInTheDocument();
       expect(screen.getByTestId("password-input")).toBeInTheDocument();
-
+      expect(screen.getByTestId('register-user-button')).toHaveTextContent('Register');
   });
 
-  it('Testing username and password input', async () => {
+  it('Testing email, username and password input', async () => {
       render(
           <AuthProvider>
-              <LoginForm />
+              <RegisterUserForm />
           </AuthProvider>
       );
 
 
       await act(async () => {
           fireEvent.change(screen.getByTestId("username-input"), { target: { value: 'tester' } });
+          fireEvent.change(screen.getByTestId("email-input"), { target: { value: 'tester@gmail.com' } });
           fireEvent.change(screen.getByTestId("password-input"), { target: { value: 'tester123' } });
       });
 
       expect(screen.getByTestId("username-input")).toHaveValue('tester');
+      expect(screen.getByTestId("email-input")).toHaveValue('tester@gmail.com');
       expect(screen.getByTestId("password-input")).toHaveValue('tester123');
   });
 
-  it('displays error border on invalid input', async () => {
+  it('Displays error border on invalid input', async () => {
       render(
           <AuthProvider>
-              <LoginForm />
+              <RegisterUserForm />
           </AuthProvider>
       );
 
