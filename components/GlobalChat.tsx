@@ -101,8 +101,8 @@ const GlobalChat = () => {
                 <Avatar className="h-12 w-12">
                   <AvatarFallback className="pointer-events-none bg-gradient-to-br from-gray-500 to-secondary-100 text-xl capitalize">
                   { 
-                    msg.likeBadge && <span>🤍</span> ||
-                    !msg.likeBadge && <span>{msg.senderUsername.charAt(0)}</span>
+                    msg.likeBadge && <span data-testid="chat-avatar">🤍</span> ||
+                    !msg.likeBadge && <span data-testid="chat-avatar">{msg.senderUsername.charAt(0)}</span>
                   }
                   </AvatarFallback>
                 </Avatar>
@@ -123,6 +123,7 @@ const GlobalChat = () => {
       </div>
       <div className="absolute bottom-0 left-0 right-0 z-50 flex flex-row space-x-4">
         <input
+          data-testid="send-message-input"
           placeholder="Message"
           className="flex-grow rounded-md bg-primary-500 p-2 outline-none"
           value={message}
@@ -130,6 +131,7 @@ const GlobalChat = () => {
           onKeyDown={handleKeyPress}
         />
         <button
+          data-testid="send-message-button"
           className="rounded-md bg-secondary-100 px-4 text-black"
           onClick={sendMessage}
         >

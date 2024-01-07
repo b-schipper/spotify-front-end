@@ -43,7 +43,9 @@ const MusicListItem = ({track}: {track: MusicTrack}) => {
       </button>
       <h1><i>{track.title}</i></h1>
       <span>Artist: <b>{track.artistName}</b></span>
-      <button onClick={e => handleLikeMusicTrack(track.id)}>{buttonText}</button>
+      <button 
+        data-testid="like-button"
+        onClick={e => handleLikeMusicTrack(track.id)}>{buttonText}</button>
     </div>
   )
 }
